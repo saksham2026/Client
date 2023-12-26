@@ -16,7 +16,7 @@ function LoginPage() {
     const formdata = new FormData(document.querySelector("#auth-input"));
 
     axios
-      .post("http://localhost:7777/api/v1/user/login", formdata, {
+      .post("https://retrocraft-backend.onrender.com/api/v1/user/login", formdata, {
         headers: {
           "Content-Type": "application/json",
         },

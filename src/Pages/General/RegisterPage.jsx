@@ -38,7 +38,7 @@ function RegisterPage() {
           document.querySelector("#register-container")
         );
         axios
-          .post("http://localhost:7777/api/v1/user/register", formdata, {
+          .post("https://retrocraft-backend.onrender.com/api/v1/user/register", formdata, {
             withCredentials: true,
             headers: {
               "Content-Type": "multipart/form-data",

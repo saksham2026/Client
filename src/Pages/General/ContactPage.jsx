@@ -30,7 +30,7 @@ function ContactPage() {
   const [loading, setLoading] = useState(false);
   async function getUser() {
     setLoading(true);
-    Axios("http://localhost:7777/api/v1/user/getuser", {
+    Axios("https://retrocraft-backend.onrender.com//api/v1/user/getuser", {
       withCredentials: true,
     })
       .then((response) => {
@@ -51,7 +51,7 @@ function ContactPage() {
   async function handleSubmit(event) {
     event.preventDefault();
     const formdata = new FormData(document.querySelector("#contact-form"));
-    await axios.post("http://localhost:7777/api/v1/user/sendmail", formdata, {
+    await axios.post("https://retrocraft-backend.onrender.com/api/v1/user/sendmail", formdata, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json"

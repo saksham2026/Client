@@ -13,7 +13,7 @@ function JobDetail() {
     const [jobDetails, setJobDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   async function getRole(){
-    Axios("http://localhost:7777/api/v1/user/getrole").then((response)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getrole").then((response)=>{
       setRole(response.data.data.role);
     })
   }
@@ -29,7 +29,7 @@ function JobDetail() {
   }
   async function getJob(){
     setLoading(true)
-    Axios("http://localhost:7777/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
         console.log(response)
         setJobDetails(response.data.data)
         setLoading(false)

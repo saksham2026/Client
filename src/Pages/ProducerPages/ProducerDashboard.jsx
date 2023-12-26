@@ -14,7 +14,7 @@ function ProducerDashboard() {
   const [jobs, setJobs] = useState([]);
   async function getUser() {
     setLoading(true);
-    Axios("http://localhost:7777/api/v1/user/getuser")
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getuser")
       .then((response) => {
         setImage(response.data.data.user.avatarUrl);
       })
@@ -24,7 +24,7 @@ function ProducerDashboard() {
   }
 
   async function getProducersAndFreelancers() {
-    Axios("http://localhost:7777/api/v1/user/getproducersandfreelancers", {
+    Axios("https://retrocraft-backend.onrender.com/v1/user/getproducersandfreelancers", {
       withCredentials: true,
     }).then((response) => {
       setFreelancers(response.data.data.freelancers);
@@ -33,7 +33,7 @@ function ProducerDashboard() {
   }
 
   async function getJobs() {
-    Axios("http://localhost:7777/api/v1/user/getjobs")
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobs")
       .then((response) => {
         setJobs(response.data.data);
         setLoading(false);

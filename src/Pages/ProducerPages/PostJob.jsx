@@ -15,7 +15,7 @@ function PostJob() {
     setLoading(true);
     event.preventDefault();
     const formdata = new FormData(document.querySelector("#job-form"));
-    Axios("http://localhost:7777/api/v1/user/postjob", formdata)
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/postjob", formdata)
       .then((response) => {
         setLoading(false);
         navigate("/producerdashboard")

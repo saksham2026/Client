@@ -44,7 +44,7 @@ function ProfilePage() {
     const formdata = new FormData(document.querySelector("#imageupload"));
     confirm("Do you want to update Image?");
     axios
-      .post("http://localhost:7777/api/v1/user/updateavatar", formdata, {
+      .post("https://retrocraft-backend.onrender.com//api/v1/user/updateavatar", formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -60,7 +60,7 @@ function ProfilePage() {
   }
 
   async function getUser() {
-    Axios("http://localhost:7777/api/v1/user/getuser")
+    Axios("https://retrocraft-backend.onrender.com//api/v1/user/getuser")
       .then((response) => {
         console.log(response);
 
@@ -91,7 +91,7 @@ function ProfilePage() {
     setEdit(!edit);
   }
   function handleLogout(){
-    Axios("http://localhost:7777/api/v1/user/logout").then((res)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/logout").then((res)=>{
       window.location.reload();
     }).catch((error)=>{
       window.location.reload();
@@ -102,7 +102,7 @@ function ProfilePage() {
     e.preventDefault();
     const formdata = new FormData(document.querySelector("#profile"));
     axios
-      .post("http://localhost:7777/api/v1/user/setuser", formdata, {
+      .post("https://retrocraft-backend.onrender.com/api/v1/user/setuser", formdata, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

@@ -35,7 +35,7 @@ const [job, setJobs] = useState(null);
 async function getUser() {
     setLoading(true)
   Axios(
-    "http://localhost:7777/api/v1/user/getuserwithusername",
+    "https://retrocraft-backend.onrender.com/api/v1/user/getuserwithusername",
     { username },
     { withCredentials: true }
   )
@@ -60,7 +60,7 @@ async function getUser() {
 }
 async function getJobs() {
   // This is  a api call for listing jobs afferred by the producer.
-  Axios("http://localhost:7777/api/v1/user/getjobsbyusername",{ username })
+  Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobsbyusername",{ username })
     .then((response) => {
       console.log("Jobs", response);
       setJobs(response.data.data);
