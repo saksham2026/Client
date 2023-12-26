@@ -25,7 +25,7 @@ function ProducerDashboard() {
 
   async function getProducersAndFreelancers() {
     Axios(
-      "https://retrocraft-backend.onrender.com/v1/user/getproducersandfreelancers",
+      "https://retrocraft-backend.onrender.com/api/v1/user/getproducersandfreelancers",
       {
         headers: {
           "Content-Type": "application/json",
