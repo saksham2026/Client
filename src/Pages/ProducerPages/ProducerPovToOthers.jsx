@@ -28,10 +28,9 @@ const [email, setEmail] = useState(null);
 const [firstname, setFirstName] = useState(null);
 const [lastname, setLastName] = useState(null);
 const [aboutme, setAboutMe] = useState(null);
-const [awards, setAwards] = useState(null);
 const [experience, setExperience] = useState(null);
 const [mobile, setMobile] = useState(null);
-const [job, setJobs] = useState(null);
+const [job, setJobs] = useState([]);
 async function getUser() {
     setLoading(true)
   Axios(
@@ -181,7 +180,7 @@ useEffect(() => {
           ></textarea>
         </div>
       </form>
-      {/* <div className="flex flex-col items-center gap-5 w-full">
+      <div className="flex flex-col items-center gap-5 w-full">
           <h1 className="font-bold text-4xl">Jobs</h1>
           <div
             id="my-jobs-container"
@@ -190,10 +189,9 @@ useEffect(() => {
 
             {Array.from(job).map((element, index) => {
               return (
-                <Link to={`/job/${element._id}`} >
                 <div
                   key={element._id}
-                  className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7"
+                  className="h-[200px] w-[200px] border rounded-md text-black flex flex-col items-center gap-7 bg-gray-800"
                 >
                   <h1>Job Description</h1>
                   <ul className="w-[200px] flex flex-col gap-2 px-4">
@@ -203,11 +201,10 @@ useEffect(() => {
                     <li>Time(in d):{" " + element.time}</li>
                   </ul>
                 </div>
-                </Link>
               );
             })}
           </div>
-        </div> */}
+        </div>
     </>
   );
 }
