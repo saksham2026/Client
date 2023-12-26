@@ -31,7 +31,7 @@ function FreelancerPovProducer() {
 
   async function getUser() {
     setLoading(true)
-    Axios("http://localhost:7777/api/v1/user/getuserwithusername",{username},{withCredentials: true})
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getuserwithusername",{username},{withCredentials: true})
       .then((response) => {
         console.log(response);
         setEmail(response.data.data.personalDetails[0].email);
