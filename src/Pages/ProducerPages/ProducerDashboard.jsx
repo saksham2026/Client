@@ -34,9 +34,12 @@ function ProducerDashboard() {
         withCredentials: true,
       }
     ).then((response) => {
+      console.log("New",response);
       setFreelancers(response.data.data.freelancers);
       setProducers(response.data.data.producers);
-    });
+    }).catch((error)=>{
+      console.log("NewError",error);
+    })
   }
 
   async function getJobs() {
