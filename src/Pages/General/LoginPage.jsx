@@ -19,6 +19,7 @@ function LoginPage() {
       .post("https://retrocraft-backend.onrender.com/api/v1/user/login", formdata, {
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
         },
         withCredentials: true,
       })

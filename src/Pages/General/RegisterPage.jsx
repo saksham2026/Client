@@ -41,7 +41,8 @@ function RegisterPage() {
           .post("https://retrocraft-backend.onrender.com/api/v1/user/register", formdata, {
             withCredentials: true,
             headers: {
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
             },
           })
           .then((res) => {

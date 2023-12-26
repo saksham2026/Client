@@ -24,9 +24,16 @@ function ProducerDashboard() {
   }
 
   async function getProducersAndFreelancers() {
-    Axios("https://retrocraft-backend.onrender.com/v1/user/getproducersandfreelancers", {
-      withCredentials: true,
-    }).then((response) => {
+    Axios(
+      "https://retrocraft-backend.onrender.com/v1/user/getproducersandfreelancers",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+        withCredentials: true,
+      }
+    ).then((response) => {
       setFreelancers(response.data.data.freelancers);
       setProducers(response.data.data.producers);
     });
@@ -76,82 +83,86 @@ function ProducerDashboard() {
             />
           </div>
         </nav>
-        {(jobs!=[])&&(<div className="flex flex-col items-center gap-5 w-full">
-          <h1 className="font-bold text-4xl mt-[20px]">My Jobs</h1>
-          <div
-            id="my-jobs-container"
-            className="w-[300px] h-[300px] md:w-4/5 flex overflow-x-scroll gap-10 items-center"
-          >
-            <Link to="/postjob">
-              <div
-                id="job-cards"
-                className="h-[200px] w-[200px] bg-white rounded-md text-black flex flex-col items-center justify-center gap-7"
-              >
-                <h1 className="w-[200px] flex justify-center font-bold text-3xl">
-                  POST JOB
-                </h1>
-                <i
-                  class="fa-solid fa-plus"
-                  style={{ color: "#000000", fontSize: "4rem" }}
-                ></i>
-              </div>
-            </Link>
-
-            {Array.from(jobs).map((element, index) => {
-              return (
-                <Link to={`/job/${element._id}`} >
+        {jobs != [] && (
+          <div className="flex flex-col items-center gap-5 w-full">
+            <h1 className="font-bold text-4xl mt-[20px]">My Jobs</h1>
+            <div
+              id="my-jobs-container"
+              className="w-[300px] h-[300px] md:w-4/5 flex overflow-x-scroll gap-10 items-center"
+            >
+              <Link to="/postjob">
                 <div
-                  key={element._id}
-                  className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7 hover:scale-105 transform transition duration-80"
+                  id="job-cards"
+                  className="h-[200px] w-[200px] bg-white rounded-md text-black flex flex-col items-center justify-center gap-7"
                 >
-                  <h1>Job Description</h1>
-                  <ul className="w-[200px] flex flex-col gap-2 px-4">
-                    <li>Title:{" " + element.jobprofile}</li>
-                    <li>Location:{" " +element.location}</li>
-                    <li>Paygrade:{" "+ element.paygrade}</li>
-                    <li>Time(in d):{" " + element.time}</li>
-                  </ul>
+                  <h1 className="w-[200px] flex justify-center font-bold text-3xl">
+                    POST JOB
+                  </h1>
+                  <i
+                    class="fa-solid fa-plus"
+                    style={{ color: "#000000", fontSize: "4rem" }}
+                  ></i>
                 </div>
-                </Link>
-              );
-            })}
+              </Link>
+
+              {Array.from(jobs).map((element, index) => {
+                return (
+                  <Link to={`/job/${element._id}`}>
+                    <div
+                      key={element._id}
+                      className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7 hover:scale-105 transform transition duration-80"
+                    >
+                      <h1>Job Description</h1>
+                      <ul className="w-[200px] flex flex-col gap-2 px-4">
+                        <li>Title:{" " + element.jobprofile}</li>
+                        <li>Location:{" " + element.location}</li>
+                        <li>Paygrade:{" " + element.paygrade}</li>
+                        <li>Time(in d):{" " + element.time}</li>
+                      </ul>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>)}
-        {(freelancers!=[])&&(<div className="flex flex-col items-center gap-5 w-full">
-          <h1 className="font-bold text-4xl">Freelancers</h1>
-          <div
-            id="freelancers-container"
-            className="w-[300px] h-[300px] flex md:w-4/5 overflow-x-scroll overflow-y-hidden gap-10 items-center px-3"
-          >
-            {Array.from(freelancers).map((element, index) => {
-              return (
-                <>
-                  {!element && <Loader />}
-                  <div
-                    key={element._id}
-                    className="h-[200px] w-[200px] bg-white rounded-md text-black flex flex-col items-center gap-7 hover:scale-105 transform transition duration-80"
-                  >
-                    <Link to={`/freelancer/${element.username}`}>
-                      <div className="w-[200px] flex flex-col gap-2 p-4 items-center">
-                        <h1>
-                          {element.firstname.toUpperCase() +
-                            " " +
-                            element.lastname.toUpperCase()}
-                        </h1>
-                        <img
-                          src={element.avatarUrl}
-                          alt=""
-                          className="border h-[120px] w-[120px] rounded-full object-cover"
-                        />
-                      </div>
-                    </Link>
-                    <Buttun text="More Info" />
-                  </div>
-                </>
-              );
-            })}
+        )}
+        {freelancers != [] && (
+          <div className="flex flex-col items-center gap-5 w-full">
+            <h1 className="font-bold text-4xl">Freelancers</h1>
+            <div
+              id="freelancers-container"
+              className="w-[300px] h-[300px] flex md:w-4/5 overflow-x-scroll overflow-y-hidden gap-10 items-center px-3"
+            >
+              {Array.from(freelancers).map((element, index) => {
+                return (
+                  <>
+                    {!element && <Loader />}
+                    <div
+                      key={element._id}
+                      className="h-[200px] w-[200px] bg-white rounded-md text-black flex flex-col items-center gap-7 hover:scale-105 transform transition duration-80"
+                    >
+                      <Link to={`/freelancer/${element.username}`}>
+                        <div className="w-[200px] flex flex-col gap-2 p-4 items-center">
+                          <h1>
+                            {element.firstname.toUpperCase() +
+                              " " +
+                              element.lastname.toUpperCase()}
+                          </h1>
+                          <img
+                            src={element.avatarUrl}
+                            alt=""
+                            className="border h-[120px] w-[120px] rounded-full object-cover"
+                          />
+                        </div>
+                      </Link>
+                      <Buttun text="More Info" />
+                    </div>
+                  </>
+                );
+              })}
+            </div>
           </div>
-        </div>)}
+        )}
         <div className="flex flex-col items-center gap-5 w-full">
           <h1 className="font-bold text-4xl">Producers</h1>
           <div

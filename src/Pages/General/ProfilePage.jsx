@@ -47,6 +47,7 @@ function ProfilePage() {
       .post("https://retrocraft-backend.onrender.com/api/v1/user/updateavatar", formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Credentials": true,
         },
         withCredentials: true,
       })

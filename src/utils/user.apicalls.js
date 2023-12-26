@@ -4,6 +4,7 @@ const Axios = async (url, formdata) => {
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
     },
   });
   return response;
