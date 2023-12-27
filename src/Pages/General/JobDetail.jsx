@@ -5,15 +5,17 @@ import Input from "../../Components/Input";
 import Buttun from "../../Components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteJob  } from "../../utils/user";
+import { Link } from "react-router-dom";
 function JobDetail() {
 
     const { jobId } = useParams();
     const [role, setRole] = useState(null) // This is state I am using to diffrentiate between a Producer and a Freelancer.
     const navigate = useNavigate();
     const [jobDetails, setJobDetails] = useState(null);
+    const [host, setHost] = useState({});
   const [loading, setLoading] = useState(false);
   async function getRole(){
-    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getrole").then((response)=>{
+    Axios("https:retrocraft-backend.onrender.com/api/v1/user/getrole").then((response)=>{
       setRole(response.data.data.role);
     })
   }
@@ -29,9 +31,10 @@ function JobDetail() {
   }
   async function getJob(){
     setLoading(true)
-    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
+    Axios("http://retrocraft-backend.onrender.com/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
         console.log(response)
-        setJobDetails(response.data.data)
+        setJobDetails(response.data.data[0])
+        setHost(response.data.data[1]);
         setLoading(false)
     }).catch((error)=>{
         setLoading(false)
@@ -136,7 +139,29 @@ function JobDetail() {
         />)}
         
       </form>
+    <div id="host-information" className="w-full h-[300px] flex items-center justify-center border bg-black"></div>
+    <h1 className="text-white font-bold text-4xl">Job Poster</h1>
+    <div
+                    className="h-[200px] w-[200px] bg-white rounded-md text-black flex flex-col items-center gap-7"
+                  >
+                    <Link to={`/producer/${host?.username}`}>
+                      <div className="w-[200px] flex flex-col gap-2 p-4 items-center">
+                        <h1>
+                          {host?.firstname?.toUpperCase() +
+                            " " +
+                            host?.lastname?.toUpperCase()}
+                        </h1>
+                        <img
+                          src={host?.avatarUrl}
+                          alt=""
+                          className="border h-[120px] w-[120px] rounded-full object-cover"
+                        />
+                      </div>
+                    </Link>
+                    <Buttun text="More Info" />
+                  </div>
     </div>
+
     </>
   )
 }

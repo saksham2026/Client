@@ -9,6 +9,7 @@ import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "../../Components/ImageUpload";
 import { Axios } from "../../utils/user.apicalls";
+import Select from "../../Components/Select";
 const containerClasses = classNames("relative", "group");
 const imageClasses = classNames(
   "w-[200px]",
@@ -47,7 +48,6 @@ function ProfilePage() {
       .post("https://retrocraft-backend.onrender.com/api/v1/user/updateavatar", formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Credentials": true,
         },
         withCredentials: true,
       })
@@ -91,33 +91,38 @@ function ProfilePage() {
   function handleEdit() {
     setEdit(!edit);
   }
-  function handleLogout(){
-    Axios("https://retrocraft-backend.onrender.com/api/v1/user/logout").then((res)=>{
-      window.location.reload();
-    }).catch((error)=>{
-      window.location.reload();
-    })
-  }
-  function handleSave(e) {
-    setLoading(true);
-    e.preventDefault();
-    const formdata = new FormData(document.querySelector("#profile"));
-    axios
-      .post("https://retrocraft-backend.onrender.com/api/v1/user/setuser", formdata, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        setLoading(false);
+  function handleLogout() {
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/logout")
+      .then((res) => {
         window.location.reload();
       })
       .catch((error) => {
-        console.log(error);
-        setLoading(false);
+        window.location.reload();
       });
+  }
+  function handleSave(e) {
+    e.preventDefault();
+    // console.log(edit);
+    if (edit) {
+      setLoading(true);
+      const formdata = new FormData(document.querySelector("#profile"));
+      axios
+        .post("https://retrocraft-backend.onrender.com/api/v1/user/setuser", formdata, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          setLoading(false);
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    }
   }
   return (
     <>
@@ -177,9 +182,9 @@ function ProfilePage() {
             type="button"
             text="Go Back"
             className=" px-2 py-1 bg-white text-red-600 rounded-md mt-10 font-bold"
-            onClick={()=>{
-              if(role =="Producer") navigate("/producerdashboard");
-              if(role =="Freelancer")  navigate("/freelancerdashboard");
+            onClick={() => {
+              if (role == "Producer") navigate("/producerdashboard");
+              if (role == "Freelancer") navigate("/freelancerdashboard");
             }}
           />
         </div>
@@ -235,28 +240,34 @@ function ProfilePage() {
               divClass="flex gap-2 items-center"
               labelClass="w-[110px]"
             />
-            { role==="Freelancer" && (<Input
-              label="Profile"
-              name="jobprofile"
-              id="jobprofile"
-              defaultValue={jobprofile}
-              type="text"
-              readOnly={!edit}
-              inputClass="text-white px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
-              divClass="flex gap-2 items-center"
-              labelClass="w-[110px]"
-            />)}
-            { role==="Freelancer" && (<Input
-              label="Paygrade"
-              name="paygrade"
-              id="paygrade"
-              defaultValue={paygrade}
-              type="text"
-              readOnly={!edit}
-              inputClass="text-white px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
-              divClass="flex gap-2 items-center"
-              labelClass="w-[110px]"
-            />)}
+            {role === "Freelancer" && (
+              <Select
+                label="Profile"
+                name="jobprofile"
+                id="jobprofile"
+                options={["A", "B", "C", "D"]}
+                defaultValue={jobprofile}
+                type="text"
+                disabled={!edit}
+                className="text-black px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
+                divClass="flex gap-2 items-center"
+                labelClass="w-[110px]"
+              />
+            )}
+            {role === "Freelancer" && (
+              <Select
+                label="Paygrade"
+                options={["A", "B", "C", "D"]}
+                name="paygrade"
+                id="paygrade"
+                defaultValue={paygrade}
+                type="text"
+                disabled={!edit}
+                className="text-black px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
+                divClass="flex gap-2 items-center"
+                labelClass="w-[110px]"
+              />
+            )}
             <Input
               label="Username"
               name="username"
