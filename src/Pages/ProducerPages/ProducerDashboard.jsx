@@ -110,7 +110,7 @@ function ProducerDashboard() {
 
               {Array.from(jobs).map((element, index) => {
                 return (
-                  <Link to={`/job/${element._id}`}>
+                  <Link to={`/jobforhost/${element._id}`}>
                     <div
                       key={element._id}
                       className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7 hover:scale-105 transform transition duration-80"

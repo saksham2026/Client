@@ -15,70 +15,71 @@ const imageClasses = classNames(
   "cursor-pointer"
 );
 
-
-
-
-
 function ProducerPovToOthers() {
-    const { username } = useParams();
-const navigate = useNavigate();
-const [loading, setLoading] = useState(true);
-const [profileImageUrl, setProfileImageUrl] = useState(null);
-const [email, setEmail] = useState(null);
-const [firstname, setFirstName] = useState(null);
-const [lastname, setLastName] = useState(null);
-const [aboutme, setAboutMe] = useState(null);
-const [experience, setExperience] = useState(null);
-const [mobile, setMobile] = useState(null);
-const [job, setJobs] = useState([]);
-async function getUser() {
-    setLoading(true)
-  Axios(
-    "https://retrocraft-backend.onrender.com/api/v1/user/getuserwithusername",
-    { username },
-    { withCredentials: true }
-  )
-    .then((response) => {
-      console.log("Hello",response);
-      setEmail(response.data.data.personalDetails[0].email);
-      setFirstName(
-        response.data.data.personalDetails[0].firstname.toUpperCase()
-      );
-      setProfileImageUrl(response.data.data.personalDetails[0].avatarUrl);
-      setLastName(response.data.data.personalDetails[0].lastname.toUpperCase());
-      setMobile(response.data.data.personalDetails[0].mobile);
-      setExperience(response.data.data.professionalDetails[0].experience);
-      setAboutMe(response.data.data.professionalDetails[0].about);
-      setLoading(false);
-    })
-    .catch((error) => {
+  const { username } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [profileImageUrl, setProfileImageUrl] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [firstname, setFirstName] = useState(null);
+  const [lastname, setLastName] = useState(null);
+  const [aboutme, setAboutMe] = useState(null);
+  const [experience, setExperience] = useState(null);
+  const [mobile, setMobile] = useState(null);
+  const [job, setJobs] = useState([]);
+  async function getUser() {
+    setLoading(true);
+    Axios(
+      "https://retrocraft-backend.onrender.com/api/v1/user/getuserwithusername",
+      { username },
+      { withCredentials: true }
+    )
+      .then((response) => {
+        console.log("Hello", response);
+        setEmail(response.data.data.personalDetails[0].email);
+        setFirstName(
+          response.data.data.personalDetails[0].firstname.toUpperCase()
+        );
+        setProfileImageUrl(response.data.data.personalDetails[0].avatarUrl);
+        setLastName(
+          response.data.data.personalDetails[0].lastname.toUpperCase()
+        );
+        setMobile(response.data.data.personalDetails[0].mobile);
+        setExperience(response.data.data.professionalDetails[0].experience);
+        setAboutMe(response.data.data.professionalDetails[0].about);
         setLoading(false);
-      console.log("error is: ", error);
-    });
-}
-async function getJobs() {
-  // This is  a api call for listing jobs afferred by the producer.
-  Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobsbyusername",{ username })
-    .then((response) => {
-      console.log("Jobs", response);
-      setJobs(response.data.data);
-      console.log("array",job);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.log("Hi", error);
-      setLoading(false);
-    });
-}
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log("error is: ", error);
+      });
+  }
+  async function getJobs() {
+    // This is  a api call for listing jobs afferred by the producer.
+    Axios(
+      "https://retrocraft-backend.onrender.com/api/v1/user/getjobsbyusername",
+      { username }
+    )
+      .then((response) => {
+        console.log("Jobs", response);
+        setJobs(response.data.data);
+        console.log("array", job);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("Hi", error);
+        setLoading(false);
+      });
+  }
 
-useEffect(() => {
+  useEffect(() => {
     getUser();
     getJobs();
   }, []);
 
   return (
     <>
-    {loading && (<Loader/>)}
+      {loading && <Loader />}
       <form
         className="bg-gray-800 text-white h-screen w-screen overflow-x-hidden flex flex-col gap-10 py-10 px-4"
         method="post"
@@ -184,27 +185,27 @@ useEffect(() => {
             id="my-jobs-container"
             className="w-[300px] h-[200px] md:w-4/5 flex overflow-x-scroll gap-10 bg-transparent"
           >
-
             {Array.from(job).map((element, index) => {
               return (
-                <div
-                  key={element._id}
-                  className="h-[200px] w-[200px] border rounded-md text-black flex flex-col items-center gap-7 bg-white"
-                >
-                  <h1>Job Description</h1>
-                  <ul className="w-[200px] flex flex-col gap-2 px-4">
-                    <li>Title:{" " + element.jobprofile}</li>
-                    <li>Location:{" " +element.location}</li>
-                    <li>Paygrade:{" "+ element.paygrade}</li>
-                    <li>Time(in d):{" " + element.time}</li>
-                  </ul>
-                </div>
+                <Link to={`/job/${element._id}`}>
+                  <div
+                    key={element._id}
+                    className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7"
+                  >
+                    <h1>Job Description</h1>
+                    <ul className="w-[200px] flex flex-col gap-2 px-4">
+                      <li>Title:{" " + element.jobprofile}</li>
+                      <li>Location:{" " + element.location}</li>
+                      <li>Paygrade:{" " + element.paygrade}</li>
+                      <li>Time(in d):{" " + element.time}</li>
+                    </ul>
+                  </div>
+                </Link>
               );
             })}
           </div>
         </div>
       </form>
-      
     </>
   );
 }
