@@ -15,7 +15,7 @@ function JobDetailforHost() {
     const [host, setHost] = useState({});
   const [loading, setLoading] = useState(false);
   async function getRole(){
-    Axios("https:retrocraft-backend.onrender.com/api/v1/user/getrole", { jobId }).then((response)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getrole", { jobId }).then((response)=>{
       setRole(response.data.data.role);
     })
   }

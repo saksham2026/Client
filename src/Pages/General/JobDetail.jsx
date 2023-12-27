@@ -15,18 +15,8 @@ function JobDetail() {
     const [host, setHost] = useState({});
   const [loading, setLoading] = useState(false);
   async function getRole(){
-    Axios("https:retrocraft-backend.onrender.com/api/v1/user/getrole", { jobId }).then((response)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getrole", { jobId }).then((response)=>{
       setRole(response.data.data.role);
-    })
-  }
-  async function handleDelete(){
-    console.log(jobId)
-    deleteJob(jobId).then((r)=>{
-      console.log("r", r);
-      alert("Job deleted successfully")
-      navigate(-1);
-    }).catch((error)=>{
-      alert("Could not delete job");
     })
   }
   async function getJob(){
