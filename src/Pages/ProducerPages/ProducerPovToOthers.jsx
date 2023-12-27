@@ -178,8 +178,7 @@ useEffect(() => {
             className="border-black border w-[350px] font-semibold p-2 bg-gray-500 outline-none rounded-lg md:w-[500px]"
           ></textarea>
         </div>
-      </form>
-      <div className="flex flex-col items-center gap-5 w-full">
+        <div className="flex flex-col items-center gap-5 w-full">
           <h1 className="font-bold text-4xl">Jobs</h1>
           <div
             id="my-jobs-container"
@@ -204,6 +203,8 @@ useEffect(() => {
             })}
           </div>
         </div>
+      </form>
+      
     </>
   );
 }
