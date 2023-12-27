@@ -47,7 +47,6 @@ async function getUser() {
       setProfileImageUrl(response.data.data.personalDetails[0].avatarUrl);
       setLastName(response.data.data.personalDetails[0].lastname.toUpperCase());
       setMobile(response.data.data.personalDetails[0].mobile);
-      setAwards(response.data.data.professionalDetails[0].honors);
       setExperience(response.data.data.professionalDetails[0].experience);
       setAboutMe(response.data.data.professionalDetails[0].about);
       setLoading(false);
