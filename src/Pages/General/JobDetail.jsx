@@ -15,7 +15,7 @@ function JobDetail() {
     const [host, setHost] = useState({});
   const [loading, setLoading] = useState(false);
   async function getRole(){
-    Axios("https:retrocraft-backend.onrender.com/api/v1/user/getrole").then((response)=>{
+    Axios("https:retrocraft-backend.onrender.com/api/v1/user/getrole", { jobId }).then((response)=>{
       setRole(response.data.data.role);
     })
   }
@@ -130,12 +130,6 @@ function JobDetail() {
           type="button"
           text="Apply"
           className="px-3 py-1 text-black bg-green-600 rounded-md"
-        />)}
-        {role=="Producer" &&(<Buttun
-          type="button"
-          text="Delete"
-          className="px-3 py-1 text-black bg-red-600 rounded-md"
-          onClick={handleDelete}
         />)}
         
       </form>
