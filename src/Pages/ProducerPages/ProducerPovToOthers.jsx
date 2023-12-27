@@ -183,14 +183,14 @@ useEffect(() => {
           <h1 className="font-bold text-4xl">Jobs</h1>
           <div
             id="my-jobs-container"
-            className="w-[300px] h-[200px] md:w-4/5 flex overflow-x-scroll gap-10"
+            className="w-[300px] h-[200px] md:w-4/5 flex overflow-x-scroll gap-10 bg-transparent"
           >
 
             {Array.from(job).map((element, index) => {
               return (
                 <div
                   key={element._id}
-                  className="h-[200px] w-[200px] border rounded-md text-black flex flex-col items-center gap-7 bg-gray-800"
+                  className="h-[200px] w-[200px] border rounded-md text-black flex flex-col items-center gap-7 bg-white"
                 >
                   <h1>Job Description</h1>
                   <ul className="w-[200px] flex flex-col gap-2 px-4">

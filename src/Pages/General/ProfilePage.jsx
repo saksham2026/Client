@@ -241,7 +241,7 @@ function ProfilePage() {
               id="jobprofile"
               defaultValue={jobprofile}
               type="text"
-              readOnly
+              readOnly={!edit}
               inputClass="text-white px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
               divClass="flex gap-2 items-center"
               labelClass="w-[110px]"
@@ -252,7 +252,7 @@ function ProfilePage() {
               id="paygrade"
               defaultValue={paygrade}
               type="text"
-              readOnly
+              readOnly={!edit}
               inputClass="text-white px-2 py-1 outline-none bg-gray-500 w-[200px] rounded-md"
               divClass="flex gap-2 items-center"
               labelClass="w-[110px]"
