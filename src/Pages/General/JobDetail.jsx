@@ -31,7 +31,7 @@ function JobDetail() {
   }
   async function getJob(){
     setLoading(true)
-    Axios("http://retrocraft-backend.onrender.com/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobdetail",{ jobId }).then((response)=>{
         console.log(response)
         setJobDetails(response.data.data[0])
         setHost(response.data.data[1]);
