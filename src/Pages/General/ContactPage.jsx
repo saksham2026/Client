@@ -30,7 +30,7 @@ function ContactPage() {
   const [loading, setLoading] = useState(false);
   async function getUser() {
     setLoading(true);
-    Axios("https://retrocraft-backend.onrender.com//api/v1/user/getuser", {
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getuser", {
       withCredentials: true,
     })
       .then((response) => {
