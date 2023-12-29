@@ -9,7 +9,7 @@ function EntryPage() {
       <Navbar />
       <div
         id="hero-section"
-        className="font-bold flex items-center flex-col gap-2 sm:gap-4 font-mono sm:text-2xl"
+        className="font-bold flex items-center flex-col gap-2 sm:gap-4 font-mono sm:text-2xl md:text-5xl"
       >
         <h1>Welcome to RetroCraftHub</h1>
         <h1>Connect with Producers</h1>
