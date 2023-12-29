@@ -59,8 +59,9 @@ function LoginPage() {
               type="username"
               required={true}
               placeholder="Your username"
-              inputClass="px-2 py-1 text-md outline-none border-green-800 border-2 rounded-md bg-transparent placeholder-gray-600"
+              inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
               divClass="flex flex-col w-full"
+              labelClass="font-bold text-2xl"
             />
             
             <Input
@@ -69,13 +70,14 @@ function LoginPage() {
               name="password"
               id="password"
               required={true}
-              inputClass="bg-transparent border-green-800 border-2 outline-none text-xl px-2 py-1 sm:w-full rounded-lg"
+              inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
               divClass="flex flex-col w-full"
+              labelClass="font-bold text-2xl"
             />
             <Buttun
               text="Login"
               type="Submit"
-              className="mt-10 outline-none bg-green-600 text-white text-lg px-4 py-1 rounded-md active:bg-green-800"
+              className="mt-10 outline-none bg-green-600 text-white text-2xl rounded w-[150px] p-3"
             />
             <p>
               Don't have a account?{" "}
