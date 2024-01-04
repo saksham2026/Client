@@ -82,7 +82,7 @@ function RegisterPage() {
               id="firstname"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
               labelClass="font-bold text-2xl"
             />
             <Input
@@ -92,7 +92,8 @@ function RegisterPage() {
               id="lastname"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
 
@@ -103,7 +104,8 @@ function RegisterPage() {
               id="username"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
             <Input
@@ -113,7 +115,8 @@ function RegisterPage() {
               id="email"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
             <Input
@@ -125,7 +128,8 @@ function RegisterPage() {
               pattern="+91 [0-9]{10}"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
             <Select
@@ -134,7 +138,8 @@ function RegisterPage() {
               id="role"
               className="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full text-white"
               options={["Producer", "Freelancer"]}
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
               optionsClassname='bg-black'
             />
@@ -145,7 +150,8 @@ function RegisterPage() {
               id="password"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
             <Input
@@ -155,7 +161,8 @@ function RegisterPage() {
               id="confirmPassword"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-2"
+
               labelClass="font-bold text-2xl"
             />
           </div>
@@ -165,19 +172,21 @@ function RegisterPage() {
               label="Upload Profile Image"
               type="file"
               name="avatar"
-              divClass="flex flex-col w-full items-center"
+              divClass="flex flex-col w-full items-center gap-2"
             />
           </div>
           <Buttun
             text="Register"
-            className="bg-green-600 text-white font-bold px-3 py-3 mt-3 w-[200px]"
+            className="button-effect bg-green-600 text-white font-bold px-3 py-3 mt-3 w-[200px]"
             type="submit"
           />
-          <p className="font-bold text-xl">
+          <p className="font-bold text-xl flex gap-2">
             Already a user?{" "}
+            <div className="link-login">
             <Link to="/login" className="font-bold ">
               Login
             </Link>
+            </div>
           </p>
         </form>
       </div>

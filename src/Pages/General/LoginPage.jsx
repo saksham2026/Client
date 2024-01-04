@@ -43,10 +43,10 @@ function LoginPage() {
   return (
     <>
       {loading && <Loader />}
-      <div className="bg-neutral-900 h-screen w-screen sm:text-xl md:text-2xl items-center flex flex-col gap-5 text-yellow-300">
+      <div className=" bg-black h-screen w-screen sm:text-xl md:text-2xl items-center flex flex-col gap-5 text-yellow-300">
         <Navbar />
-        <div id="login-container" className="flex flex-col items-center py-10 border border-gray-600 rounded-md bg-neutral-950 w-[220px] sm:w-[300px] md:w-[500px] ">
-          <h1 id='login-heading'>Login</h1>
+        <div id="login-container" className="md:mt-[120px] flex flex-col items-center py-10 md:p-10 border border-gray-600 rounded-xl bg-neutral-950 w-[220px] sm:w-[340px] md:w-[500px] ">
+          <h1 id='login-heading' className="font-bold text-3xl">Login</h1>
           <form
             id="auth-input"
             className="flex flex-col px-2 items-center gap-3 mt-4 w-full"
@@ -60,7 +60,7 @@ function LoginPage() {
               required={true}
               placeholder="Your username"
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-4"
               labelClass="font-bold text-2xl"
             />
             
@@ -69,21 +69,24 @@ function LoginPage() {
               type="password"
               name="password"
               id="password"
+              placeholder="Password"
               required={true}
               inputClass="bg-transparent border-green-800 border-2 outline-none text-2xl px-2 py-2 sm:w-full"
-              divClass="flex flex-col w-full"
+              divClass="flex flex-col w-full gap-4"
               labelClass="font-bold text-2xl"
             />
             <Buttun
               text="Login"
               type="Submit"
-              className="mt-10 outline-none bg-green-600 text-white text-2xl rounded w-[150px] p-3"
+              className="button-effect mt-10 outline-none bg-green-600 text-white text-2xl rounded w-[150px] p-3"
             />
-            <p>
+            <p className="flex gap-2">
               Don't have a account?{" "}
-              <Link to="/register" className="font-bold outline-none">
+              <div className="link-register">
+              <a href="/register" className="font-bold outline-none">
                 Get Started
-              </Link>
+              </a>
+              </div>
             </p>
           </form>
         </div>
