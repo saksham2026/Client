@@ -18,6 +18,7 @@ import JobDetail from "./Pages/General/JobDetail.jsx";
 import Dashboard from "./Pages/General/Dashboard.jsx";
 import ProducerNotification from "./Pages/ProducerPages/ProducerNotification.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 if(process.env.NODE_ENV === 'production') disableReactDevTools();
 const Router = createBrowserRouter([
   {
