@@ -3,7 +3,7 @@ import React from "react";
 function Buttun(props) {
   return (
     <div>
-      <button className={props.className} type={props.type} onClick={props.onClick}>
+      <button value={props.value} id={props.id} className={props.className} type={props.type} onClick={props.onClick}>
         {props.text}
       </button>
     </div>

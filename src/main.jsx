@@ -14,12 +14,11 @@ import ProducerPovToOthers from "./Pages/ProducerPages/ProducerPovToOthers.jsx";
 import ContactPage from "./Pages/General/ContactPage.jsx";
 import PostJob from "./Pages/ProducerPages/PostJob.jsx";
 import FreelancerDashboard from "./Pages/FreelancerPages/FreelancerDashboard.jsx";
-import JobDetailforHost from "./Pages/General/JobDetail.jsx";
-import Dashboard from "./Pages/General/Dashboard.jsx";
-import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import JobDetail from "./Pages/General/JobDetail.jsx";
-if(process.env.NODE_ENV === 'production') disableReactDevTools()
-
+import Dashboard from "./Pages/General/Dashboard.jsx";
+import ProducerNotification from "./Pages/ProducerPages/ProducerNotification.jsx";
+import { ChakraProvider } from "@chakra-ui/react";
+if(process.env.NODE_ENV === 'production') disableReactDevTools();
 const Router = createBrowserRouter([
   {
     path: '/',
@@ -62,21 +61,23 @@ const Router = createBrowserRouter([
     element: <PostJob/>
   },
   {
-    path: '/jobforhost/:jobId',
-    element: <JobDetailforHost/>,
-  },
-  {
     path: '/job/:jobId',
-    element:<JobDetail/>
+    element: <JobDetail/>,
   },
   {
     path: '/dashboard',
     element: <Dashboard/>,
+  },
+  {
+    path: '/producernot',
+    element: <ProducerNotification/>
   }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <ChakraProvider>
   <React.StrictMode>
     <RouterProvider router={ Router } />
   </React.StrictMode>
+  </ChakraProvider>
 );

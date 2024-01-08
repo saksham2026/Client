@@ -48,12 +48,16 @@ function FreelancerDashboard() {
     console.log("Saksham");
     const formdata = new FormData(document.querySelector("#filters"));
     axios
-      .post("https://retrocraft-backend.onrender.com/api/v1/user/filterjobs", formdata, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .post(
+        "https://retrocraft-backend.onrender.com/api/v1/user/filterjobs",
+        formdata,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         setJobLoading(false);
         console.log(response);
@@ -67,9 +71,12 @@ function FreelancerDashboard() {
 
   // Getting producers and freelancers for the freelancer feed .
   async function getProducersAndFreelancers() {
-    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getproducersandfreelancers", {
-      withCredentials: true,
-    }).then((response) => {
+    Axios(
+      "https://retrocraft-backend.onrender.com/api/v1/user/getproducersandfreelancers",
+      {
+        withCredentials: true,
+      }
+    ).then((response) => {
       setFreelancers(response.data.data.freelancers);
       setProducers(response.data.data.producers);
     });
@@ -183,11 +190,6 @@ function FreelancerDashboard() {
             >
               Profile
             </Link>
-            <Buttun
-              type="button"
-              text="Logout"
-              className="px-2 cursor-pointer"
-            />
             <Buttun
               type="button"
               text="Filter Jobs"
