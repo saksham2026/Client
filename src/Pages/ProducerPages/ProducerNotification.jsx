@@ -36,7 +36,7 @@ function ProducerNotification() {
   const handleAccept = async (event) => {
     axios
       .post(
-        "https://retrocraft-backend/api/v1/user/accepted",
+        "https://retrocraft-backend.onrender.com/api/v1/user/accepted",
         {
           jobId: event.target.value,
           freelancer: event.target.id,
@@ -70,7 +70,7 @@ function ProducerNotification() {
     console.log(event.target);
     axios
       .post(
-        "https://retrocraft-backend/api/v1/user/rejected",
+        "https://retrocraft-backend.onrender.com/api/v1/user/rejected",
         {
           jobId: event.target.value,
           freelancer: event.target.id,

@@ -18,7 +18,7 @@ function JobDetail() {
   const [proposal, setProposal] = useState();
   const toast = useToast();
   async function getRole() {
-    Axios("https://retrocraft-backend/api/v1/user/getrole").then((response) => {
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getrole").then((response) => {
       setRole(response.data.data.role);
     });
   }
@@ -36,7 +36,7 @@ function JobDetail() {
   }
   async function getJob() {
     setLoading(true);
-    Axios("https://retrocraft-backend/api/v1/user/getjobdetail", { jobId })
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getjobdetail", { jobId })
       .then((response) => {
         console.log(response);
         setJobDetails(response.data.data[0]);
@@ -51,7 +51,7 @@ function JobDetail() {
   async function applyForJob() {
     axios
       .post(
-        "https://retrocraft-backend/api/v1/user/jobapply",
+        "https://retrocraft-backend.onrender.com/api/v1/user/jobapply",
         { jobId },
         {
           withCredentials: true,
