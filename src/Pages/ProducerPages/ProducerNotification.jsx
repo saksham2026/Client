@@ -16,7 +16,7 @@ function ProducerNotification() {
     setLoading(true);
     axios
       .post(
-        "https://retrocraft-backend/api/v1/user/getproposals",
+        "https://retrocraft-backend.onrender.com/api/v1/user/getproposals",
         {},
         {
           withCredentials: true,
