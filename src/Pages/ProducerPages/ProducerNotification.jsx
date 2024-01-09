@@ -24,7 +24,7 @@ function ProducerNotification() {
       )
       .then((response) => {
         setLoading(false);
-        console.log(response.data.data);
+        console.log("Notify", response.data.data);
         setNotifications(response.data.data);
       })
       .catch((error) => {
@@ -110,8 +110,7 @@ function ProducerNotification() {
   }, []);
   return (
     <>
-    {loading && <Loader />}
-    {(!loading)&&(<div className="h-[100vh] w-[100vw] text-white bg-gray-950 gap-10 flex flex-col items-center p-8">
+    {(<div className="h-[100vh] w-[100vw] text-white bg-gray-950 gap-10 flex flex-col items-center p-8">
       <h1 className="font-bold text-3xl">NOTIFICATIONS</h1>
 
       <div className="notfication-container border w-[300px] bg-gray-950 rounded-xl h-[700px] overflow-y-scroll overflow-x-hidden pt-5 flex gap-5 items-center flex-col">
