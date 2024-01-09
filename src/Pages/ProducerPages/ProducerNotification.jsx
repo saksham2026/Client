@@ -114,8 +114,8 @@ function ProducerNotification() {
       <h1 className="font-bold text-3xl">NOTIFICATIONS</h1>
 
       <div className="notfication-container border w-[300px] bg-gray-950 rounded-xl h-[700px] overflow-y-scroll overflow-x-hidden pt-5 flex gap-5 items-center flex-col">
-       {(notifications.length == 0)&&<>No Notifications</>}
-        {!(notifications.length == 0) && notifications !== null &&
+       {(notifications?.length == 0)&&<>No Notifications</>}
+        {!(notifications?.length == 0) && notifications !== null &&
           Array.from(notifications).map((Element) => {
             return (
               <div
