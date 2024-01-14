@@ -23,6 +23,8 @@ function ProducerDashboard() {
         setNotifications(response.data.data.length);
       });
   }, []);
+  const [freelancerLoading, setFreelancerLoading] = useState(false);
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
@@ -37,6 +39,40 @@ function ProducerDashboard() {
       })
       .catch((error) => {
         navigate("/login");
+      });
+  }
+   // Handling Filter
+   function handleFilter() {
+    setFilter(!filter);
+  }
+
+  // Cancel filter for freelancers
+  function handleCancel() {
+    setFilter(!filter);
+  }
+
+  // Getting freelancers after filtering
+  function handleSubmit(event) {
+    setFilter(false);
+    setFreelancerLoading(true);
+    event.preventDefault();
+    console.log("Saksham");
+    const formdata = new FormData(document.querySelector("#filters"));
+    axios
+      .post("https://retrocraft-backend.onrender.com/api/v1/user/fiterfreelancers", formdata, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setFreelancerLoading(false);
+        console.log("F",response);
+        setFreelancers(response.data.data);
+      })
+      .catch((error) => {
+        alert("Can not filter the jobs. Sorry!");
+        setFreelancerLoading(false);
       });
   }
 
@@ -72,6 +108,58 @@ function ProducerDashboard() {
   return (
     <>
       {loading && <Loader />}
+      {/* // It is being rendered conditionally between server request and response.
+      // Overlay for filter starts */}
+      {filter && (
+        <div className="absolute bg-black h-screen w-screen flex flex-col items-center p-5 z-10">
+          <div id="toggle" className="w-full flex h-[60px] justify-end pl-2">
+            <Buttun
+              text="Cancel"
+              className="p-1 bg-red-600 rounded-md text-white"
+              onClick={handleCancel}
+            />
+          </div>
+
+          <form
+            id="filters"
+            className="border w-full flex flex-col items-center text-white gap-5"
+            method="post"
+            onSubmit={handleSubmit}
+          >
+            {/* // Filter for job profile */}
+            <Select
+              label="Job Profile"
+              name="jobprofile"
+              id="jobprofile"
+              options={["A", "B", "C", "D"]}
+              divClass="flex items-center gap-5"
+              className="w-[150px] bg-white text-black outline-none"
+              labelClass="w-[150px] text-whie font-bold"
+            />
+            {/* // Filter for pay grade */}
+            <Select
+              label="Paygrade"
+              name="paygrade"
+              id="paygrade"
+              options={["<= A", "<= B", "<= C", "<= D"]}
+              divClass="flex items-center gap-5 "
+              className="w-[150px] bg-white text-black outline-none"
+              labelClass="w-[150px] text-whie font-bold"
+            />
+            <div
+              id="apply"
+              className="flex w-full justify-center h-[60px] items-center"
+            >
+              <Buttun
+                text="Apply"
+                type="submit"
+                className="bg-green-600 text-white p-1 rounded"
+              />
+            </div>
+          </form>
+        </div>
+      )}
+      {/* // Overlay for filter ends // Code for the ProducerDashboard */}
       <div className="bg-black h-screen w-screen text-white flex flex-col items-center gap-8 overflow-y-scoll overflow-x-hidden pb-5">
         <nav className="h-[90px] w-screen bg-white text-black flex items-center gap-[20px] p-2">
           <img
