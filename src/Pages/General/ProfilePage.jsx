@@ -245,7 +245,7 @@ function ProfilePage() {
                 label="Profile"
                 name="jobprofile"
                 id="jobprofile"
-                options={["A", "B", "C", "D"]}
+                options={["A", "B", "C", "D","None"]}
                 defaultValue={jobprofile}
                 type="text"
                 disabled={!edit}
@@ -257,7 +257,7 @@ function ProfilePage() {
             {role === "Freelancer" && (
               <Select
                 label="Paygrade"
-                options={["A", "B", "C", "D"]}
+                options={["A", "B", "C", "D","None"]}
                 name="paygrade"
                 id="paygrade"
                 defaultValue={paygrade}
