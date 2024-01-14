@@ -5,7 +5,7 @@ function Select(props) {
     <div className={props.divClass}>
       <label htmlFor={props.id} className={props.labelClass}>{props.label}</label>
       <select
-      defaultValue={props.defaultValue}
+      defaultValue={props.defaultValue || "None"}
       disabled={props.disabled}
         name={props.name}
         id={props.id}
