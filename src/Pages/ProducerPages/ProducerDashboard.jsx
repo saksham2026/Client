@@ -31,6 +31,7 @@ function ProducerDashboard() {
   const [freelancers, setFreelancers] = useState([]);
   const [producers, setProducers] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [filter, setFilter] = useState(false);
   async function getUser() {
     setLoading(true);
     Axios("https://retrocraft-backend.onrender.com/api/v1/user/getuser")
@@ -174,6 +175,13 @@ function ProducerDashboard() {
             >
               Profile
             </Link>
+            {/* Button for filtering freelancers */}
+            <Buttun
+              type="button"
+              text="Filter Freelancers"
+              onClick={handleFilter}
+              className="px-2 cursor-pointer bg-black rounded text-white p-2"
+            />
             <div
               id="notifications"
               className="relative flex items-center justify-center"
