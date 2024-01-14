@@ -6,6 +6,7 @@ import Select from "../../Components/Select";
 import { Axios } from "../../utils/user.apicalls";
 import Loader from "../../Components/Loader";
 import { useNavigate } from "react-router-dom";
+import FormData from "form-data";
 import axios from "axios";
 function ProducerDashboard() {
   const [notifications, setNotifications] = useState(0);
@@ -251,7 +252,7 @@ function ProducerDashboard() {
               id="freelancers-container"
               className="w-[300px] h-[300px] flex md:w-4/5 overflow-x-scroll overflow-y-hidden gap-10 items-center px-3"
             >
-              {Array.from(freelancers).map((element, index) => {
+              {Array.from(freelancers)?.map((element, index) => {
                 return (
                   <>
                     {!element && <Loader />}
@@ -287,7 +288,7 @@ function ProducerDashboard() {
             id="freelancers-container"
             className="w-[300px] h-[200px] md:w-4/5 flex  overflow-x-scroll overflow-y-hidden gap-10"
           >
-            {Array.from(producers).map((element, index) => {
+            {Array.from(producers)?.map((element, index) => {
               return (
                 <>
                   {!element && <Loader />}
