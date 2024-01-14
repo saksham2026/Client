@@ -17,6 +17,25 @@ function FreelancerDashboard() {
   const [freelancers, setFreelancers] = useState([]);
   const [producers, setProducers] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [myJobs, setMyJobs] = useState([]);
+
+  // Get My Jobs
+  const getMyJobs = async () => {
+    axios
+      .post(
+        "https://retrocraft-backend.onrender.com/api/v1/user/myjobs",
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data.data[0]);
+        setMyJobs(response.data.data)});
+  };
 
   // Getting User from Backend
   async function getUser() {
@@ -48,16 +67,12 @@ function FreelancerDashboard() {
     console.log("Saksham");
     const formdata = new FormData(document.querySelector("#filters"));
     axios
-      .post(
-        "https://retrocraft-backend.onrender.com/api/v1/user/filterjobs",
-        formdata,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .post("https://retrocraft-backend.onrender.com/api/v1/user/filterjobs", formdata, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         setJobLoading(false);
         console.log(response);
@@ -71,12 +86,9 @@ function FreelancerDashboard() {
 
   // Getting producers and freelancers for the freelancer feed .
   async function getProducersAndFreelancers() {
-    Axios(
-      "https://retrocraft-backend.onrender.com/api/v1/user/getproducersandfreelancers",
-      {
-        withCredentials: true,
-      }
-    ).then((response) => {
+    Axios("https://retrocraft-backend.onrender.com/api/v1/user/getproducersandfreelancers", {
+      withCredentials: true,
+    }).then((response) => {
       setFreelancers(response.data.data.freelancers);
       setProducers(response.data.data.producers);
     });
@@ -102,6 +114,7 @@ function FreelancerDashboard() {
       await getUser();
       await getProducersAndFreelancers();
       await getAllJobs();
+      await getMyJobs();
     }
     get();
   }, []);
@@ -199,7 +212,40 @@ function FreelancerDashboard() {
           </div>
           {/* // Navbar ends here. */}
         </nav>
+        {/* // This is the my jobs feild. This will contain all the ongoing jobs*/}
+
+        <div className="flex flex-col items-center gap-5 w-full">
+          <h1 className="font-bold text-4xl">{`${
+            !loading && !jobLoading
+              ? `${Array.from(myJobs).length == 0 ? "No Jobs" : "Ongoing Jobs"}`
+              : "Finding"
+          }`}</h1>
+
+          <div
+            id="ongoing-jobs-container"
+            className="w-[300px] h-[200px] md:w-4/5 flex overflow-x-scroll gap-10"
+          >
+            {Array.from(myJobs).length != 0 &&
+              !jobLoading &&
+              Array.from(myJobs).map((element, index) => {
+                return (
+                  <Link>
+                    <div
+                      key={element._id}
+                      className="h-[200px] w-[200px] bg-white border rounded-md text-black flex flex-col items-center gap-7"
+                    >
+                      <h1>Job Description</h1>
+                      <ul className="w-[200px] flex flex-col gap-2 px-4">
+                        <li>ID:{" " + element.jobId}</li>
+                      </ul>
+                    </div>
+                  </Link>
+                );
+              })}
+          </div>
+        </div>
         {/* // This is the new jobs feild. This will contain all the jobs available. */}
+
         <div className="flex flex-col items-center gap-5 w-full">
           <h1 className="font-bold text-4xl">{`${
             !loading && !jobLoading
